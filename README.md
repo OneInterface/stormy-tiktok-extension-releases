@@ -61,5 +61,5 @@ For issues or questions, contact support@stormy.ai or visit [stormy.ai](https://
 
 ---
 
-**Version**: 1.0.0
+**Version**: 1.1.0
 **Last Updated**: October 2025

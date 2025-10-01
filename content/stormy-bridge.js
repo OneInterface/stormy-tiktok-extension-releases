@@ -175,23 +175,29 @@ function watchForPageConfig() {
         }
         const apiBaseUrl = configEl.getAttribute('data-api-base-url');
         const userId = configEl.getAttribute('data-user-id');
+        const countryCode = configEl.getAttribute('data-country-code');
         console.log('[Stormy Extension] 🔍 Found config element:', {
             hasApiBaseUrl: !!apiBaseUrl,
             hasUserId: !!userId,
+            hasCountryCode: !!countryCode,
             apiBaseUrl,
-            userId
+            userId,
+            countryCode
         });
         if (apiBaseUrl && userId) {
             // Get current config to check if it changed
-            const currentConfig = await chrome.storage.sync.get(['apiBaseUrl', 'userId']);
+            const currentConfig = await chrome.storage.sync.get(['apiBaseUrl', 'userId', 'countryCode']);
             // Only update if config changed
-            if (currentConfig.apiBaseUrl !== apiBaseUrl || currentConfig.userId !== userId) {
+            if (currentConfig.apiBaseUrl !== apiBaseUrl ||
+                currentConfig.userId !== userId ||
+                currentConfig.countryCode !== countryCode) {
                 console.log('[Stormy Extension] 🔧 Config changed! Auto-configuring...');
                 console.log('[Stormy Extension] Old config:', currentConfig);
-                console.log('[Stormy Extension] New config:', { apiBaseUrl, userId });
+                console.log('[Stormy Extension] New config:', { apiBaseUrl, userId, countryCode });
                 await chrome.storage.sync.set({
                     apiBaseUrl: apiBaseUrl,
-                    userId: userId
+                    userId: userId,
+                    countryCode: countryCode || 'us' // Default to US if not provided
                 });
                 console.log('[Stormy Extension] ✅ Auto-configuration complete!');
                 // Mark as configured

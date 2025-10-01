@@ -156,16 +156,28 @@ async function extractSessionData() {
         fallbackUsername: extractedUsername ? 'not used' : (username || 'NONE'),
         finalUsername: username || 'NONE'
     });
+    // Get timezone and locale from browser
+    const timezoneId = Intl.DateTimeFormat().resolvedOptions().timeZone || 'America/New_York';
+    const locale = navigator.language || 'en-US';
+    // Read country code from storage (populated by stormy-bridge from DOM)
+    const storage = await chrome.storage.sync.get(['countryCode']);
+    const countryCode = storage.countryCode || 'us'; // Default to US if not set
     console.log('[SessionExtractor] Session extraction complete:', {
         cookieCount: playwrightCookies.length,
         localStorageCount: Object.keys(localStorage).length,
         username: username || 'unknown',
-        usernameSource: extractedUsername ? 'window.__UNIVERSAL_DATA_FOR_REHYDRATION__' : 'fallback'
+        usernameSource: extractedUsername ? 'window.__UNIVERSAL_DATA_FOR_REHYDRATION__' : 'fallback',
+        locale: locale,
+        timezoneId: timezoneId,
+        countryCode: countryCode
     });
     return {
         cookies: playwrightCookies,
         localStorage,
-        username
+        username,
+        locale,
+        timezoneId,
+        countryCode
     };
 }
 
