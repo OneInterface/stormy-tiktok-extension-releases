@@ -2,10 +2,16 @@
 
 Chrome extension for capturing TikTok sessions and syncing them to Stormy.ai platform.
 
+## Quick Download
+
+**[⬇️ Download Latest Version](https://github.com/OneInterface/stormy-tiktok-extension-releases/releases/latest/download/stormy-tiktok-extension.zip)**
+
+This link always downloads the newest release automatically.
+
 ## Installation
 
 ### Step 1: Download the Extension
-Download the latest release ZIP file from the [Releases](https://github.com/OneInterface/stormy-tiktok-extension-releases/releases) page.
+Click the download link above, or visit the [Releases](https://github.com/OneInterface/stormy-tiktok-extension-releases/releases/latest) page.
 
 ### Step 2: Extract the Files
 Unzip the downloaded file to a folder on your computer.
